@@ -1,4 +1,5 @@
 import "./Article.scss";
+import DropFileInput from "./drop-file-input/DropFileInput";
 
 const Article = (props) => {
   return (
@@ -7,6 +8,9 @@ const Article = (props) => {
         <button className="active">All</button>
         <button>Images</button>
         <button>Videos</button>
+      </div>
+      <div className="dropFileInputContainer">
+        <DropFileInput />
       </div>
     </div>
   );
