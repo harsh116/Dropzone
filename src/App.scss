@@ -1,0 +1,5 @@
+$navBackgroundColor: #2c3e50;
+
+body {
+  background-color: lighten($color: $navBackgroundColor, $amount: 20%);
+}

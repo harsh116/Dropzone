@@ -1,0 +1,47 @@
+$articleBackground: whitesmoke;
+$navBackgroundColor: #2c3e50;
+$articleNaVSelectColor: darkblue;
+$articleBorderColor: #ccc; // Define the border color for the Article element
+$articleBorderWidth: 2px; // Define the border width for the Article element
+
+.Article {
+  //   margin-top: 1rem;
+
+  min-width: 200px;
+  width: 80%;
+  margin: 1rem auto;
+  background-color: $articleBackground;
+  min-height: 300px;
+  height: 70%;
+
+  // Add border to the .Article element
+  border: $articleBorderWidth solid $articleBorderColor;
+}
+
+.ArticleNav {
+  height: 3rem;
+  background-color: rgba($navBackgroundColor, 0.7);
+  display: flex;
+
+  button {
+    border: none;
+    color: white;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin: 0 1rem;
+    transition: all 0.1s ease-in-out;
+    box-sizing: border-box;
+    border-bottom: 3px solid transparent;
+
+    &:hover {
+      background-color: rgba($color: black, $alpha: 0.1);
+    }
+
+    &.active {
+      border-bottom: 3px solid $articleNaVSelectColor;
+      color: $articleNaVSelectColor;
+      //   color: black;
+    }
+  }
+}
