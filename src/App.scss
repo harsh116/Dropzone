@@ -1,4 +1,4 @@
-$navBackgroundColor: #2c3e50;
+@import "config";
 
 body {
   background-color: lighten($color: $navBackgroundColor, $amount: 20%);

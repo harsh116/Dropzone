@@ -1,6 +1,7 @@
+@import "../config.scss";
+
 $articleBackground: whitesmoke;
-$navBackgroundColor: #2c3e50;
-$articleNaVSelectColor: darkblue;
+
 $articleBorderColor: #ccc; // Define the border color for the Article element
 $articleBorderWidth: 2px; // Define the border width for the Article element
 
@@ -11,7 +12,8 @@ $articleBorderWidth: 2px; // Define the border width for the Article element
   width: 80%;
   margin: 1rem auto;
   background-color: $articleBackground;
-  min-height: 300px;
+  // min-height: 300px;
+  min-height: 500px;
   height: 70%;
 
   // Add border to the .Article element
@@ -48,8 +50,10 @@ $articleBorderWidth: 2px; // Define the border width for the Article element
 
 .dropFileInputContainer {
   width: 100%;
-  height: 100%;
+  height: 80%;
+
   display: flex;
   justify-content: center;
   align-items: center;
+  // flex-direction: column;
 }

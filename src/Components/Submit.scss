@@ -1,0 +1,24 @@
+@import "../config";
+
+.submit {
+  //   left: 0;
+  //   margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+
+  .submit_btn {
+    // margin-left: auto;
+    border: none;
+    padding: 0.5rem 1rem;
+    background-color: $navBackgroundColor;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: lighten($navBackgroundColor, 5%);
+    }
+  }
+}
