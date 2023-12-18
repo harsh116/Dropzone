@@ -3,8 +3,15 @@ import { HOST } from "../constants";
 import { useNavigate } from "react-router-dom";
 
 import { changeURLParams } from "../helper";
+import Spinner from "./Spinner";
 
 const Submit = (props) => {
+  // isResult = { isResult };
+  // setIsResult = { setIsResult };
+
+  // setErrorMessage = { setErrorMessage };
+  // setErrorVisibility = { setErrorVisibility };
+
   const navigate = useNavigate();
   const uploadFile = () => {
     const files = props.files;
@@ -12,6 +19,8 @@ const Submit = (props) => {
 
     if (files === null || files.length == 0) {
       console.log("No file chosen");
+      props.setErrorVisibility(true);
+      props.setErrorMessage("No file chosen");
       return;
     }
 
@@ -22,7 +31,7 @@ const Submit = (props) => {
     });
 
     // form.append("fileInputs", files);
-
+    props.setIsResult(false);
     fetch(`${HOST}/submitFiles`, {
       method: "post",
       mode: "cors",
@@ -42,6 +51,7 @@ const Submit = (props) => {
           // }
 
           props.setOutputFileObjs(data);
+          props.setIsResult(true);
           // props.setRoute("output");
           navigate("/result");
 
@@ -51,15 +61,30 @@ const Submit = (props) => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        props.setIsResult(true);
+        props.setErrorVisibility(true);
+        props.setErrorMessage("Something went wrong");
+        console.log("error1: ", err);
       });
   };
 
   return (
     <div className="submit">
-      <button onClick={uploadFile} className="submit_btn">
-        Upload
-      </button>
+      <Spinner
+        visible={!props.isResult}
+        // type={"Fidget Spinner"}
+        // type={"Circles"}
+        type={"Oval"}
+        // text={"Uploading"}
+        color="black"
+      />
+      {props.isResult ? (
+        <button onClick={uploadFile} className="submit_btn">
+          Upload
+        </button>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

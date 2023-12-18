@@ -34,9 +34,14 @@ const Article = (props) => {
         <DropFileInput category={props.category} onFileChange={onFileChange} />
       </div>
       <Submit
+        isResult={props.isResult}
+        setIsResult={props.setIsResult}
         setOutputFileObjs={props.setOutputFileObjs}
         // setRoute={props.setRoute}
         files={props.files}
+        //
+        setErrorMessage={props.setErrorMessage}
+        setErrorVisibility={props.setErrorVisibility}
       />
     </div>
   );
