@@ -8,6 +8,8 @@ import uploadImgAny from "../../assets/cloud-upload-regular-240.png";
 import uploadImgImage from "../../assets/image_icon.png";
 import uploadImgVideo from "../../assets/video-camera.png";
 
+import { getReadableSize } from "../../helper";
+
 const DropFileInput = (props) => {
   const wrapperRef = useRef(null);
 
@@ -84,7 +86,7 @@ const DropFileInput = (props) => {
               />
               <div className="drop-file-preview__item__info">
                 <p>{item.name}</p>
-                <p>{item.size}B</p>
+                <p>{getReadableSize(item.size)}</p>
               </div>
               <span
                 className="drop-file-preview__item__del"

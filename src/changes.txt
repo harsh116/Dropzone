@@ -1,0 +1,4 @@
+1. set max width for file preview  done
+2.displaying file size in KB/MB/GB instead of bytes  done
+3. adding error message for no hosting platform selected  done
+4. adding fileditch   done

@@ -41,6 +41,7 @@
 .drop-file-preview {
   margin-top: 30px;
   max-height: 70%;
+  max-width : 300px;
   overflow-y: auto;
 }
 

@@ -1,5 +1,11 @@
 import { useState } from "react";
+import { cloudHosts } from "../database/cloudHosts";
 import "./Nav.scss";
+
+const Option = (props) => {
+  const { value } = props;
+  return <option value={value}>{value}</option>;
+};
 
 const Nav = (props) => {
   const { setSelectedHost } = props;
@@ -14,6 +20,10 @@ const Nav = (props) => {
     setSelectedHost(value);
   };
 
+  const options = cloudHosts.map((cloudHost) => {
+    return <Option value={cloudHost.name} />;
+  });
+
   return (
     <div className="Nav">
       <div className="hostingSiteList">
@@ -24,8 +34,7 @@ const Nav = (props) => {
           name="hostingSitesList"
         >
           <option value="none"> --Select hosting service-- </option>
-          <option value="catbox.moe">CatBox.moe</option>
-          <option value="sdrive.app">Sdrive.app</option>
+          {options}
         </select>
       </div>
     </div>

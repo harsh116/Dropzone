@@ -42,6 +42,7 @@ const Article = (props) => {
         //
         setErrorMessage={props.setErrorMessage}
         setErrorVisibility={props.setErrorVisibility}
+        selectedHost={props.selectedHost}
       />
     </div>
   );
