@@ -17,11 +17,13 @@ import Description from "./Components/Description";
 import ToastEle from "./Components/Toast";
 
 function App() {
-  // catbox,sdrive,fileditch,uploadcare(for images only)
+  // catbox,sdrive,fileditch,uploadcare(for images only),0x0
   const [selectedHost, setSelectedHost] = useState("");
 
   // All,Images,Videos
   const [category, setCategory] = useState("All");
+
+  const [disabledCategories, setDisabledCategories] = useState([]);
 
   // [fileBlobs] array of fileBlobs
   const [files, setFiles] = useState(null);
@@ -48,11 +50,16 @@ function App() {
           setErrorVisibility={setErrorVisibility}
         />
       </PrimeReactProvider>
-      <Nav setSelectedHost={setSelectedHost} />
+      <Nav
+        setSelectedHost={setSelectedHost}
+        setCategory={setCategory}
+        setDisabledCategories={setDisabledCategories}
+      />
       <Article
         files={files}
         setFiles={setFiles}
         category={category}
+        disabledCategories={disabledCategories}
         setCategory={setCategory}
         // setRoute={setRoute}
         isResult={isResult}

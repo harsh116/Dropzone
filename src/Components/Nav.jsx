@@ -8,13 +8,20 @@ const Option = (props) => {
 };
 
 const Nav = (props) => {
-  const { setSelectedHost } = props;
+  const { setSelectedHost, setCategory, setDisabledCategories } = props;
 
   const handleChange = (value) => {
     console.log("selected host: ", value);
     if (value == "none") {
       setSelectedHost("");
       return;
+    }
+
+    if (value === "uploadcare.com") {
+      setCategory("Images");
+      setDisabledCategories(["All", "Videos"]);
+    } else {
+      setDisabledCategories([]);
     }
 
     setSelectedHost(value);

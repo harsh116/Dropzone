@@ -15,12 +15,21 @@ const Article = (props) => {
 
   const categories = ["All", "Images", "Videos"];
 
+  const { disabledCategories } = props;
+
   const buttons = categories.map((ca) => {
     // debugger;
     return (
       <button
-        onClick={() => props.setCategory(ca)}
-        className={ca === props.category ? "active" : ""}
+        onClick={() => {
+          console.log("disabled categories: ", disabledCategories);
+          if (!disabledCategories.includes(ca)) {
+            props.setCategory(ca);
+          }
+        }}
+        className={`${ca === props.category ? "active" : ""} ${
+          disabledCategories.includes(ca) ? "locked" : ""
+        }`}
       >
         {ca}
       </button>

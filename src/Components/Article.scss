@@ -29,12 +29,22 @@ $articleBorderWidth: 2px; // Define the border width for the Article element
     border: none;
     color: white;
     background-color: transparent;
+
     cursor: pointer;
     font-size: 1.2rem;
     margin: 0 1rem;
     transition: all 0.1s ease-in-out;
     box-sizing: border-box;
     border-bottom: 3px solid transparent;
+
+    &.locked {
+      color: rgba(230, 230, 230);
+      cursor: auto;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
 
     &:hover {
       background-color: rgba($color: black, $alpha: 0.1);

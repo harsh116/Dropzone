@@ -20,4 +20,16 @@ export const cloudHosts = [
     description: "**Make sure that files don't exceed 10mb**",
     limitInMB: 10,
   },
+  {
+    name: "0x0.st",
+    description:
+      "**Make sure that files don't exceed 512mb**\nThis is temporary storage file will be start deleting after 30 days",
+    limitInMB: 512,
+  },
+  {
+    name: "transfer.sh",
+    description:
+      "**Make sure that files don't exceed 10gb**.\n This is temporary storage file will be deleted in 14 days",
+    limitInMB: 10000,
+  },
 ];

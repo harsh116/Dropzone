@@ -13,6 +13,8 @@ import { uploadFileDitch } from "../services/fileditch";
 import { uploadUploadCare } from "../services/uploadcare";
 
 import Spinner from "./Spinner";
+import { upload0x0st } from "../services/0x0st";
+import { uploadTransferSh } from "../services/transfersh";
 
 const Submit = (props) => {
   const regexBeforeDot = /(^\w+)\.+/;
@@ -63,6 +65,7 @@ const Submit = (props) => {
       let fileLinks = [];
       props.setIsResult(false);
       // res {status,url,filename}
+      // url here is in form of field 'data'
       for (let file of files) {
         let res;
         if (hostname === "fileditch") {
@@ -72,6 +75,12 @@ const Submit = (props) => {
         } else if (hostname === "uploadcare") {
           const fileLinkObj = await uploadUploadCare(file);
           // debugger;
+          fileLinks.push(fileLinkObj);
+        } else if (hostname === "0x0") {
+          const fileLinkObj = await upload0x0st(file);
+          fileLinks.push(fileLinkObj);
+        } else if (hostname === "transfer") {
+          const fileLinkObj = await uploadTransferSh(file);
           fileLinks.push(fileLinkObj);
         } else {
           res = await submitIndividual(file, i, files.length, hostname);
