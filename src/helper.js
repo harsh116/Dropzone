@@ -126,10 +126,116 @@ const getReadableSize = (sizeinBytes) => {
   return `${size.toFixed(2)} ${format}`;
 };
 
+// submitIndividualGeneral(file,HOST/cors-submit/chunks?url=<encoded_url> ,resType,bodyType,bodyToBeSent,fileFieldName,chunksize)
+// after fetch when link is ready message is filelink is expected and status and message field are optional
+// bodyType is either 'form' or 'file'
+const submitIndividualGeneral = async (
+  file,
+  url,
+  resType = "json",
+  bodyType = "form",
+  method = "post",
+  bodyToBeSent = {},
+  fileFieldName = "",
+  chunksize = sliceSize
+) => {
+  const fileSize = file.size;
+  const fileName = file.name;
+
+  try {
+    console.log("file: ", file);
+
+    let start = 0;
+    let end = chunksize;
+
+    const filePieces = [];
+    let i = 0;
+    while (end <= fileSize) {
+      const chunk = file.slice(start, end);
+      if (end == fileSize) {
+        filePieces.push({ pos: i, chunk, isEnd: true, fileName });
+      } else {
+        filePieces.push({ pos: i, chunk, isEnd: false });
+      }
+
+      start = end;
+      end += chunksize;
+      i++;
+    }
+
+    if (start < fileSize) {
+      const chunk = file.slice(start, fileSize);
+      filePieces.push({ pos: i, chunk, isEnd: true, fileName });
+      i++;
+    }
+
+    // let fileLinks = [];
+    for (let filePiece of filePieces) {
+      const form = new FormData();
+
+      // form.append('data',{pos: filePiece.pos,isEnd: filePiece.isEnd} )
+
+      let res;
+
+      form.append("pos", filePiece.pos);
+      form.append("isEnd", filePiece.isEnd);
+      form.append("file", filePiece.chunk);
+
+      form.append("fileName", filePiece.fileName);
+
+      form.append("bodyToBeSent", JSON.stringify(bodyToBeSent));
+
+      // body to be sent to proxy will be form but from proxy to target will be file if bodytype is file
+      form.append("bodyType", bodyType);
+
+      if (bodyType === "form") {
+        form.append("fileFieldName", fileFieldName);
+      } else {
+        form.append("fileFieldName", "fname");
+      }
+
+      // form.append("total", total);
+      // form.append("fileIndex", index);
+
+      res = await fetch(url, {
+        method,
+        // headers: {
+        // 	'Content-Type': 'multipart/form-data'
+        // },
+        body: form,
+      });
+
+      let data;
+      if (resType === "json") {
+        data = await res.json();
+      } else if (resType === "text") {
+        data = await res.text();
+      }
+
+      console.log("res: ", data);
+      if (filePiece.isEnd === true) {
+        // const fileLink = data;
+        return { status: "ok", data };
+      }
+
+      await promiseSetTimeOut(2000);
+    }
+
+    console.log("file: ", file);
+    console.log("filePieces: ", filePieces);
+
+    return { status: "error" };
+  } catch (err) {
+    console.log("err: ", err);
+    return { status: "error", message: err };
+  }
+};
+
 export {
   changeURLParams,
   transferTextToClipboard,
   submitIndividual,
   checkLengthofFiles,
   getReadableSize,
+  submitIndividualGeneral,
 };
