@@ -25,19 +25,24 @@ const uploadTransferSh = async (file) => {
   const fetchurl = `${proxyURL}?url=${encodedURL}`;
 
   if (file) {
-    const resData = await submitIndividualGeneral(
-      file,
-      fetchurl,
-      "text",
-      "file",
-      "put"
-    );
-    console.log(resData);
-    if (resData.status === "ok") {
-      resObj["status"] = "ok";
-      resObj["data"] = resData.data;
-      resObj["filename"] = file.name;
-      return resObj;
+    try {
+      const resData = await submitIndividualGeneral(
+        file,
+        fetchurl,
+        "text",
+        "file",
+        "put"
+      );
+      console.log(resData);
+      if (resData.status === "ok") {
+        resObj["status"] = "ok";
+        resObj["data"] = resData.data;
+        resObj["filename"] = file.name;
+        return resObj;
+      }
+    } catch (err) {
+      console.log("err: ", err);
+      throw err;
     }
   }
 

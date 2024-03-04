@@ -16,52 +16,58 @@ const upload0x0st = async (file) => {
 
   const fetchurl = `${proxyURL}?url=${encodedURL}`;
 
-  if (file) {
-    // resObj : {status,data,filename} , here data is ddl url
+  try {
+    if (file) {
+      // resObj : {status,data,filename} , here data is ddl url
 
-    // this response data contain field data(which is actually file link) and maybe status and message field
+      // this response data contain field data(which is actually file link) and maybe status and message field
 
-    // const formData = new FormData();
-    // formData.append("file", file);
-    const fileFieldName = "file";
-    const bodyToBeSent = {};
+      // const formData = new FormData();
+      // formData.append("file", file);
+      const fileFieldName = "file";
+      const bodyToBeSent = {};
 
-    const resData = await submitIndividualGeneral(
-      file,
-      fetchurl,
-      "text",
-      "form",
-      bodyToBeSent,
-      fileFieldName
-    );
-    console.log(resData);
-    if (resData.status === "ok") {
-      resObj["status"] = "ok";
-      resObj["data"] = resData.data;
-      resObj["filename"] = file.name;
-      return resObj;
+      const resData = await submitIndividualGeneral(
+        file,
+        fetchurl,
+        "text",
+        "form",
+        "post",
+        bodyToBeSent,
+        fileFieldName
+      );
+      console.log(resData);
+      if (resData.status === "ok") {
+        resObj["status"] = "ok";
+        resObj["data"] = resData.data;
+        resObj["filename"] = file.name;
+        return resObj;
+      }
     }
-
-    // const formData = new FormData();
-    // formData.append("file", file);
-    // //    const apiUrl = "https://0x0.st";
-    // try {
-    //   const response = await fetch(fetchurl, {
-    //     method: "POST",
-    //     // headers: {
-    //     // 	'Content-Type': 'multipart/form-data',
-    //     // },
-    //     body: formData,
-    //   });
-    //   const data = await response.text();
-
-    //   return resObj;
-    //   // Handle the response data here
-    // } catch (error) {
-    //   console.error("Error:", error);
-    // }
-    // Handle errors here
+  } catch (err) {
+    console.log("err: ", err);
+    throw err;
   }
+
+  // const formData = new FormData();
+  // formData.append("file", file);
+  // //    const apiUrl = "https://0x0.st";
+  // try {
+  //   const response = await fetch(fetchurl, {
+  //     method: "POST",
+  //     // headers: {
+  //     // 	'Content-Type': 'multipart/form-data',
+  //     // },
+  //     body: formData,
+  //   });
+  //   const data = await response.text();
+
+  //   return resObj;
+  //   // Handle the response data here
+  // } catch (error) {
+  //   console.error("Error:", error);
+  // }
+  // Handle errors here
 };
 
 export { upload0x0st };

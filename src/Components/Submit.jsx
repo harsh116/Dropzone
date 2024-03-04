@@ -47,14 +47,14 @@ const Submit = (props) => {
       }
 
       const maxLengthInMb = cloudHosts.find(
-        (ele) => ele.name === props.selectedHost,
+        (ele) => ele.name === props.selectedHost
       ).limitInMB;
       const maxLength = maxLengthInMb * 1024 * 1024;
       if (checkLengthofFiles(files, maxLength) === false) {
         console.log("Max length reached");
         props.setErrorVisibility(true);
         props.setErrorMessage(
-          `Make sure that any of the file is not longer than ${maxLengthInMb} MB`,
+          `Make sure that any of the file is not longer than ${maxLengthInMb} MB`
         );
         return;
       }
@@ -105,12 +105,13 @@ const Submit = (props) => {
 
         props.setOutputFileObjs(newData);
       } else {
+        // props.setErrorMessage("Something went wrong");
         throw new Error("something wrong");
       }
     } catch (err) {
+      props.setErrorMessage("Something went wrong");
       props.setIsResult(true);
       props.setErrorVisibility(true);
-      props.setErrorMessage("Something went wrong");
       console.log("error1: ", err);
     }
 

@@ -144,7 +144,6 @@ const submitIndividualGeneral = async (
 
   try {
     console.log("file: ", file);
-
     let start = 0;
     let end = chunksize;
 
@@ -227,7 +226,8 @@ const submitIndividualGeneral = async (
     return { status: "error" };
   } catch (err) {
     console.log("err: ", err);
-    return { status: "error", message: err };
+    // return { status: "error", message: err };
+    throw err;
   }
 };
 
