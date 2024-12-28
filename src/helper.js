@@ -126,7 +126,7 @@ const getReadableSize = (sizeinBytes) => {
   return `${size.toFixed(2)} ${format}`;
 };
 
-// submitIndividualGeneral(file,HOST/cors-submit/chunks?url=<encoded_url> ,resType,bodyType,bodyToBeSent,fileFieldName,chunksize)
+// submitIndividualGeneral(file,HOST/cors-submit/chunks?url=<encoded_url> ,resType,bodyType,method,bodyToBeSent,fileFieldName,chunksize)
 // after fetch when link is ready message is filelink is expected and status and message field are optional
 // bodyType is either 'form' or 'file'
 const submitIndividualGeneral = async (
@@ -213,6 +213,7 @@ const submitIndividualGeneral = async (
 
       console.log("res: ", data);
       if (filePiece.isEnd === true) {
+        debugger;
         // const fileLink = data;
         return { status: "ok", data };
       }
