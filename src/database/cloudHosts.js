@@ -6,8 +6,9 @@ export const cloudHosts = [
   },
 
   {
-    name: "sdrive.app",
-    description: "**Make sure that files don't exceed 50mb**",
+    name: "sirv.com",
+    description:
+      "**Make sure that files don't exceed 50mb**. Total size is 500 mb so once it is filled no more upload will be possible",
     limitInMB: 50,
   },
   {

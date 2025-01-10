@@ -20,6 +20,9 @@ const Nav = (props) => {
     if (value === "uploadcare.com") {
       setCategory("Images");
       setDisabledCategories(["All", "Videos"]);
+    } else if (value === "sirv.com") {
+      setCategory("Images");
+      setDisabledCategories(["All"]);
     } else {
       setDisabledCategories([]);
     }
