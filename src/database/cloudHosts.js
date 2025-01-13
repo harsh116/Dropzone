@@ -16,6 +16,14 @@ export const cloudHosts = [
     description: "**Make sure that files don't exceed 15gb**",
     limitInMB: 15000,
   },
+
+  {
+    name: "cloudinary.com",
+    description:
+      "**Make sure that video files don't exceed 100mb and other files dont exceed 10 mb**",
+    limitInMB: 100,
+  },
+
   {
     name: "uploadcare.com",
     description: "**Make sure that files don't exceed 10mb**",
