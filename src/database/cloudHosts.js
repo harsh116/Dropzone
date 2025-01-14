@@ -20,8 +20,15 @@ export const cloudHosts = [
   {
     name: "cloudinary.com",
     description:
-      "**Make sure that video files don't exceed 100mb and other files dont exceed 10 mb**",
+      "**Make sure that video files don't exceed 100mb and other files dont exceed 10 mb**. Total size is 25 gb so once it is filled no more upload will be possible ",
     limitInMB: 100,
+  },
+
+  {
+    name: "nextcloud.com",
+    description:
+      "**Make sure that files don't exceed 1gb**, Total size is 15 gb so once it is filled no more upload will be possible",
+    limitInMB: 1024,
   },
 
   {
